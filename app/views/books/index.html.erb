@@ -1,0 +1,41 @@
+<h2>User info</h2>
+
+<%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+
+<table class="table">
+  <tbody>
+    <tr></tr>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>Books</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+    <tr>
+      <th>
+        <%= link_to book_path(book.id) do %>
+        <%= book.title %>
+        <% end %>
+      </th>
+      <th><%= book.body %></th>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
