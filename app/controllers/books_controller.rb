@@ -8,13 +8,12 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
-    flash[:notice] = "successfully"
-    redirect_to book_path(@book.id)
+      flash[:notice] = "successfully"
+      redirect_to book_path(@book.id)
     else
-    @books = Book.all
-    @user = current_user
-    @book = Book.find(params[:id])
-    render :index
+      @books = Book.all
+      @user = current_user
+      render :index
     end
   end
   
@@ -31,12 +30,14 @@ class BooksController < ApplicationController
   
   def index
     @books = Book.all
+    @book = Book.new
     @user = current_user
   end
   
   def show
-    @book = Book.find(params[:id])
-    @user = User.find(@book.user_id)
+    @book = Book.new
+    @showbook = Book.find(params[:id])
+    @user = @showbook.user
   end
   
   def destroy
@@ -49,7 +50,7 @@ class BooksController < ApplicationController
   private
   
   def book_params
-    params.permit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
   
 end
