@@ -10,7 +10,8 @@
        <tr>
          <td>
           <!--Name-->
-          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @user, :profile_image, size: "40x40", format: 'jpeg', fallback: "no_image.jpg" %>
+          
           <%= @user.name %>
          </td>
          <td>
