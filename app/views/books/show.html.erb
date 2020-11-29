@@ -7,16 +7,31 @@
     <div class="col-md-8 offset-md-1">
      <h2>Book detail</h2>
       <table class="table">
-       <tr>
+       <thead>
+        <tr>
+         <th></th>
+         <th>Title</th>
+         <th>Opinion</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
          <td>
           <!--Name-->
-          <%= attachment_image_tag @user, :profile_image, size: "40x40", format: 'jpeg', fallback: "no_image.jpg" %>
-          
-          <%= @user.name %>
+          <%= link_to user_path(@user) do %>
+           <div>
+            <%= attachment_image_tag @user, :profile_image, size: "40x40", format: 'jpeg', fallback: "no_image.jpg" %>
+           </div>
+           <div>
+            <%= @user.name %>
+           </div>
+          <% end %>
          </td>
          <td>
           <!--タイトル-->
+          <%= link_to book_path(@showbook) do %>
           <%= @showbook.title %>
+          <% end %>
          </td>
          <td>
           <!--感想-->
@@ -34,7 +49,8 @@
            <%= link_to "Destroy", book_path, method: :delete, class: 'btn btn-sm btn-danger' %>
           <% end %>
          </td>
-       </tr>
+        </tr>
+       </tbody>
       </table>
     </div>
   </div>
